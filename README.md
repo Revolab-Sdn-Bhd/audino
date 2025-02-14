@@ -58,6 +58,23 @@ $ git submodule update --init --recursive
 You can either run the project on [default configuration](./docker-compose.yml) or modify them to your need.
 **Note**: Before proceeding further, you might need to give docker `sudo` access or run the commands listed below as `sudo`.
 
+***Setup the CVAT_HOST**
+```
+export CVAT_HOST=your_domain_or_ip
+```
+
+***Change ./audino_frontend/.env & ./audino_frontend/.prod.env**
+```
+REACT_APP_BACKEND_FILE_URL="https://<your_domain_or_ip>"
+REACT_APP_BACKEND_URL="https://<your_domain_or_ip>/api"
+```
+
+***Add CSRF Origin to ./cvat/cvat/settings/production.py**
+```
+CSRF_TRUSTED_ORIGINS=["https://<your_domain_or_ip>"]
+```
+
+
 **To bring up the services, run:**
 
 ```sh

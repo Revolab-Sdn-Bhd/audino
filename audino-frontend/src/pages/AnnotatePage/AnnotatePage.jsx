@@ -638,12 +638,12 @@ export default function AnnotatePage({}) {
         start = Math.trunc(
           jobs[i].start_frame /
             (getJobMetaDataQuery.data.chunk_size -
-              getJobDetailQuery.data.overlap)
+              (getJobDetailQuery.data.overlap || 0))
         );
         end = Math.trunc(
           jobs[i].start_frame /
             (getJobMetaDataQuery.data.chunk_size -
-              getJobDetailQuery.data.overlap)
+              (getJobDetailQuery.data.overlap || 0))
         );
 
         const result = await computeAudioData(

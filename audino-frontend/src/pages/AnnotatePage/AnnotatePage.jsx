@@ -686,17 +686,17 @@ export default function AnnotatePage({}) {
         Math.trunc(
           getJobMetaDataQuery.data.start_frame /
             (getJobMetaDataQuery.data.chunk_size -
-              getJobDetailQuery.data.overlap)
+              (getJobDetailQuery.data.overlap || 0))
         ),
         Math.trunc(
           getJobMetaDataQuery.data.start_frame /
             (getJobMetaDataQuery.data.chunk_size -
-              getJobDetailQuery.data.overlap)
+              (getJobDetailQuery.data.overlap || 0))
         ),
         jobId,
         getJobMetaDataQuery.data.included_frames,
         getJobMetaDataQuery.data.chunk_size,
-        getJobDetailQuery.data.overlap
+        (getJobDetailQuery.data.overlap || 0)
       ),
     onSuccess: (arrayBuffer) => {
       // console.log(arrayBuffer);

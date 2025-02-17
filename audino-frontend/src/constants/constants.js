@@ -11,7 +11,7 @@ export const DATASET_MAPING = {
   is_voxpopuli: "Gender, Age, Language/Locale, Start, End, Transcription",
   is_tedlium: "Gender, Language/Locale, Start, End, Transcription",
   is_commonvoice:
-    "Gender, Age, Accent, Language/Locale, Start, End, Transcription",
+    "Gender, Age, Accent, Emotion, Language/Locale, Start, End, Transcription",
 };
 
 export const OPTIONS_TASK_TYPE = [

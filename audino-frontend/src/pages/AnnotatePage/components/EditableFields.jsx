@@ -155,6 +155,193 @@ export default function EditableFields({
         </h3>
         {/* <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p> */}
       </div>
+
+
+      <div className="pt-4 border-t border-gray-100 dark:border-audino-neutral-gray">
+        <div className="flex justify-between mb-2">
+          <label
+            htmlFor="transcription"
+            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
+          >
+            Segment transcription
+          </label>
+
+          <CustomSelect
+            id={"language"}
+            options={langOptions}
+            value={lang}
+            onChange={(e) => setLang(e.target.value)}
+            className={"!text-xs w-min !mt-0"}
+          />
+        </div>
+        {lang == "kd010" ? (
+          <CustomInput
+            type="text"
+            inputType="textarea"
+            refs={inputTextRef}
+            name="transcription"
+            id="transcription"
+            // formError={formError}
+            value={getInputValue("transcription")}
+            onChange={(e) => {
+              handleValueChange("transcription", e.target.value);
+            }}
+            style={{ fontFamily: "Kruti Dev", fontSize: "1.2rem" }}
+          />
+        ) : (
+          <ReactTransliterate
+            value={getInputValue("transcription")}
+            onChangeText={(text) => {
+              handleValueChange("transcription", text);
+            }}
+            lang={lang}
+            className="block w-full rounded-md border-0 py-1.5 pr-10 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 !outline-none dark:bg-audino-light-navy dark:text-audino-cloud-gray ring-gray-300 dark:ring-audino-charcoal placeholder:text-gray-300 focus:ring-audino-primary text-gray-900 "
+            renderComponent={(props) => {
+              inputTextRef.current = props.ref.current;
+              return <textarea {...props} />;
+            }}
+          />
+        )}
+      </div>
+      
+      {showLang && (
+        <div className="pt-4">
+          <label
+            htmlFor="locale"
+            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
+          >
+            Locale
+          </label>
+          <CustomSelect
+            id="locale"
+            name="locale"
+            options={[
+              { label: "English (US)", value: "en-US" },
+              { label: "Arabic (Jordan)", value: "ar-JO" },
+              { label: "Arabic (Lebanon)", value: "ar-LB" },
+              { label: "Arabic (Syria)", value: "ar-SY" },
+              { label: "Arabic (Egypt)", value: "ar-EG" },
+              { label: "Arabic (Saudi Arabia)", value: "ar-SA" },
+              { label: "Arabic (United Arab Emirates)", value: "ar-AE" },
+              { label: "Arabic (Kuwait)", value: "ar-KW" },
+              { label: "Arabic (Tunisia)", value: "ar-TN" },
+              { label: "Arabic (Qatar)", value: "ar-QA" },
+              { label: "Arabic (Iraq)", value: "ar-IQ" },
+              { label: "Arabic (Sudan)", value: "ar-SD" },
+              { label: "Arabic (Yemen)", value: "ar-YE" },
+              { label: "Others", value: "others" },
+            ]}
+            // formError={formError}
+            value={getInputValue("locale")}
+            onChange={(e) => handleValueChange("locale", e.target.value)}
+          />
+        </div>
+      )}
+
+      {showAccent && (
+        <div className="pt-4">
+          <label
+            htmlFor="accent"
+            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
+          >
+            Accent - English words can also be arabic accent.
+          </label>
+          <CustomSelect
+            id="accent"
+            name="accent"
+            options={[
+              { label: "English", value: "en" },
+              { label: "Levantine Arabic", value: "lev" },
+              { label: "Modern Standard Arabic (MSA)", value: "msa" },
+              { label: "Maghrebi Arabic", value: "mgh" },
+              { label: "Egyptian Arabic", value: "egy" },
+              { label: "Gulf Arabic", value: "glf" },
+              { label: "Others", value: "others" },
+            ]}
+            // formError={formError}
+            value={getInputValue("accent")}
+            onChange={(e) => handleValueChange("accent", e.target.value)}
+          />
+        </div>
+      )}
+
+      {showEmotion && (
+        <div className="pt-4">
+          <label
+            htmlFor="emotion"
+            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
+          >
+            Emotion
+          </label>
+          <CustomSelect
+            id="emotion"
+            name="emotion"
+            options={[
+              { label: "Happy 😄", value: "happy" },
+              { label: "Sad 😢", value: "sad" },
+              { label: "Angry 😠", value: "angry" },
+              { label: "Surprised 😲", value: "surprised" },
+              { label: "Fearful 😨", value: "fearful" },
+              { label: "Disgusted 🤢", value: "disgusted" },
+              { label: "Calm 😌", value: "calm" },
+              { label: "Neutral 😐", value: "neutral" },
+              { label: "Others", value: "others" },
+            ]}
+            // formError={formError}
+            value={getInputValue("emotion")}
+            onChange={(e) => handleValueChange("emotion", e.target.value)}
+          />
+        </div>
+      )}
+      {showGender && (
+        <div className="pt-4">
+          <p className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver">
+            Gender
+          </p>
+          <div className="flex items-center space-x-4 mt-2">
+            {["male", "female", "others"].map((option) => (
+              <label
+                key={option}
+                className="inline-flex items-center cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="gender"
+                  value={option}
+                  checked={getInputValue("gender") === option}
+                  onChange={(e) => handleValueChange("gender", e.target.value)}
+                  className="h-4 w-4 text-audino-primary border-gray-300 focus:ring-audino-primary"
+                />
+                <span className="ml-2 text-sm text-gray-900 dark:text-audino-light-silver">
+                  {/* Capitalize the first letter for a nicer label: */}
+                  {option.charAt(0).toUpperCase() + option.slice(1)}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+      {showAge && (
+        <div className="mb-4 pt-4">
+          <label
+            htmlFor="age"
+            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver mb-2"
+          >
+            Age
+          </label>
+          <CustomInput
+            type="number"
+            name="age"
+            id="age"
+            // formError={formError}
+            placeholder="age"
+            value={getInputValue("age")}
+            onChange={(e) => {
+              handleValueChange("age", e.target.value.toString());
+            }}
+          />
+        </div>
+      )}
       <div className="mt-6 border-t dark:border-audino-neutral-gray border-gray-100">
         <dl className="divide-y dark:divide-audino-neutral-gray divide-gray-100">
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -321,200 +508,10 @@ export default function EditableFields({
             />
           </div>
         </dl>
-      </div>
-
-      <div className="pt-4 border-t border-gray-100 dark:border-audino-neutral-gray">
-        <div className="flex justify-between mb-2">
-          <label
-            htmlFor="transcription"
-            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
-          >
-            Segment transcription
-          </label>
-
-          <CustomSelect
-            id={"language"}
-            options={langOptions}
-            value={lang}
-            onChange={(e) => setLang(e.target.value)}
-            className={"!text-xs w-min !mt-0"}
-          />
-        </div>
-        {lang == "kd010" ? (
-          <CustomInput
-            type="text"
-            inputType="textarea"
-            refs={inputTextRef}
-            name="transcription"
-            id="transcription"
-            // formError={formError}
-            value={getInputValue("transcription")}
-            onChange={(e) => {
-              handleValueChange("transcription", e.target.value);
-            }}
-            style={{ fontFamily: "Kruti Dev", fontSize: "1.2rem" }}
-          />
-        ) : (
-          <ReactTransliterate
-            value={getInputValue("transcription")}
-            onChangeText={(text) => {
-              handleValueChange("transcription", text);
-            }}
-            lang={lang}
-            className="block w-full rounded-md border-0 py-1.5 pr-10 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 !outline-none dark:bg-audino-light-navy dark:text-audino-cloud-gray ring-gray-300 dark:ring-audino-charcoal placeholder:text-gray-300 focus:ring-audino-primary text-gray-900 "
-            renderComponent={(props) => {
-              inputTextRef.current = props.ref.current;
-              return <textarea {...props} />;
-            }}
-          />
-        )}
-      </div>
-
-      {showGender && (
-        <div className="pt-4">
-          <label
-            htmlFor="gender"
-            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
-          >
-            Gender
-          </label>
-          <CustomSelect
-            id="gender"
-            name="gender"
-            options={[
-              { label: "Male", value: "male" },
-              { label: "Female", value: "female" },
-              { label: "Others", value: "others" },
-            ]}
-            // formError={formError}
-            value={getInputValue("gender")}
-            onChange={(e) => handleValueChange("gender", e.target.value)}
-          />
-        </div>
-      )}
-      {showLang && (
-        <div className="pt-4">
-          <label
-            htmlFor="locale"
-            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
-          >
-            Locale
-          </label>
-          <CustomSelect
-            id="locale"
-            name="locale"
-            options={[
-              { label: "English (US)", value: "en-US" },
-              { label: "Arabic (Egypt)", value: "ar-EG" },
-              { label: "Arabic (Saudi Arabia)", value: "ar-SA" },
-              { label: "Arabic (United Arab Emirates)", value: "ar-AE" },
-              { label: "Arabic (Lebanon)", value: "ar-LB" },
-              { label: "Arabic (Morocco)", value: "ar-MA" },
-              { label: "Arabic (Jordan)", value: "ar-JO" },
-              { label: "Arabic (Kuwait)", value: "ar-KW" },
-              { label: "Arabic (Algeria)", value: "ar-DZ" },
-              { label: "Arabic (Tunisia)", value: "ar-TN" },
-              { label: "Arabic (Qatar)", value: "ar-QA" },
-              { label: "Arabic (Oman)", value: "ar-OM" },
-              { label: "Arabic (Bahrain)", value: "ar-BH" },
-              { label: "Arabic (Iraq)", value: "ar-IQ" },
-              { label: "Arabic (Sudan)", value: "ar-SD" },
-              { label: "Arabic (Yemen)", value: "ar-YE" },
-              { label: "Arabic (Syria)", value: "ar-SY" },
-              { label: "Others", value: "others" },
-            ]}
-            // formError={formError}
-            value={getInputValue("locale")}
-            onChange={(e) => handleValueChange("locale", e.target.value)}
-          />
-        </div>
-      )}
-
-      {showAccent && (
-        <div className="pt-4">
-          <label
-            htmlFor="accent"
-            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
-          >
-            Accent
-          </label>
-          <CustomSelect
-            id="accent"
-            name="accent"
-            options={[
-              { label: "English", value: "en" },
-              { label: "Modern Standard Arabic (MSA)", value: "msa" },
-              { label: "Egyptian", value: "egyptian" },
-              { label: "Gulf", value: "gulf" },
-              { label: "Levantine", value: "levantine" },
-              { label: "Maghrebi", value: "maghrebi" },
-              { label: "Iraqi", value: "iraqi" },
-              { label: "Sudanese", value: "sudanese" },
-              { label: "Yemeni", value: "yemeni" },
-              { label: "Hijazi", value: "hijazi" },
-              { label: "Najdi", value: "najdi" },
-              { label: "Others", value: "others" },
-            ]}
-            // formError={formError}
-            value={getInputValue("accent")}
-            onChange={(e) => handleValueChange("accent", e.target.value)}
-          />
-        </div>
-      )}
-
-      {showEmotion && (
-        <div className="pt-4">
-          <label
-            htmlFor="emotion"
-            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
-          >
-            Emotion
-          </label>
-          <CustomSelect
-            id="emotion"
-            name="emotion"
-            options={[
-              { label: "Happy 😄", value: "happy" },
-              { label: "Sad 😢", value: "sad" },
-              { label: "Angry 😠", value: "angry" },
-              { label: "Surprised 😲", value: "surprised" },
-              { label: "Fearful 😨", value: "fearful" },
-              { label: "Disgusted 🤢", value: "disgusted" },
-              { label: "Excited 😃", value: "excited" },
-              { label: "Calm 😌", value: "calm" },
-              { label: "Confused 🤔", value: "confused" },
-              { label: "Neutral 😐", value: "neutral" },
-              { label: "Others", value: "others" },
-            ]}
-            // formError={formError}
-            value={getInputValue("emotion")}
-            onChange={(e) => handleValueChange("emotion", e.target.value)}
-          />
-        </div>
-      )}
-
-      {showAge && (
-        <div className="mb-4 pt-4">
-          <label
-            htmlFor="age"
-            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver mb-2"
-          >
-            Age
-          </label>
-          <CustomInput
-            type="number"
-            name="age"
-            id="age"
-            // formError={formError}
-            placeholder="age"
-            value={getInputValue("age")}
-            onChange={(e) => {
-              handleValueChange("age", e.target.value.toString());
-            }}
-          />
-        </div>
-      )}
+      </div>      
     </>
+
+
   );
 }
 

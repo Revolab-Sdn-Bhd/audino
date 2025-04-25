@@ -322,22 +322,23 @@ export default function EditableFields({
         </div>
       )}
       {showAge && (
-        <div className="mb-4 pt-4">
+        <div className="pt-4">
           <label
             htmlFor="age"
-            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver mb-2"
+            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
           >
             Age
           </label>
           <CustomSelect
-            id="age"
-            name="age"
+            id="accent"
+            name="accent"
             options={[
               { label: "Child (< 18)", value: "child" },
               { label: "Adult (18 - 39)", value: "adult" },
               { label: "Middle-aged (40 - 60)", value: "middle_aged" },
               { label: "Old (> 60)", value: "old" },
             ]}
+            // formError={formError}
             value={getInputValue("age")}
             onChange={(e) => handleValueChange("age", e.target.value)}
           />

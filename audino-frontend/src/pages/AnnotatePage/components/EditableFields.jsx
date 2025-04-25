@@ -330,8 +330,8 @@ export default function EditableFields({
             Age
           </label>
           <CustomSelect
-            id="accent"
-            name="accent"
+            id="age"
+            name="age"
             options={[
               { label: "Child (< 18)", value: "child" },
               { label: "Adult (18 - 39)", value: "adult" },

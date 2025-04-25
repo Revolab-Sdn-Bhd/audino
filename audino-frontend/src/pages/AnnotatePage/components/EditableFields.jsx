@@ -329,16 +329,17 @@ export default function EditableFields({
           >
             Age
           </label>
-          <CustomInput
-            type="number"
-            name="age"
+          <CustomSelect
             id="age"
-            // formError={formError}
-            placeholder="age"
+            name="age"
+            options={[
+              { label: "Child (< 18)", value: "child" },
+              { label: "Adult (18 - 39)", value: "adult" },
+              { label: "Middle-aged (40 - 60)", value: "middle_aged" },
+              { label: "Old (> 60)", value: "old" },
+            ]}
             value={getInputValue("age")}
-            onChange={(e) => {
-              handleValueChange("age", e.target.value.toString());
-            }}
+            onChange={(e) => handleValueChange("age", e.target.value)}
           />
         </div>
       )}

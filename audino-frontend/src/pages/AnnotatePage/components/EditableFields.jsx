@@ -293,34 +293,6 @@ export default function EditableFields({
           />
         </div>
       )}
-      {showGender && (
-        <div className="pt-4">
-          <p className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver">
-            Gender
-          </p>
-          <div className="flex items-center space-x-4 mt-2">
-            {["male", "female", "others"].map((option) => (
-              <label
-                key={option}
-                className="inline-flex items-center cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  name="gender"
-                  value={option}
-                  checked={getInputValue("gender") === option}
-                  onChange={(e) => handleValueChange("gender", e.target.value)}
-                  className="h-4 w-4 text-audino-primary border-gray-300 focus:ring-audino-primary"
-                />
-                <span className="ml-2 text-sm text-gray-900 dark:text-audino-light-silver">
-                  {/* Capitalize the first letter for a nicer label: */}
-                  {option.charAt(0).toUpperCase() + option.slice(1)}
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
       {showAge && (
         <div className="pt-4">
           <label
@@ -341,6 +313,27 @@ export default function EditableFields({
             // formError={formError}
             value={getInputValue("age")}
             onChange={(e) => handleValueChange("age", e.target.value)}
+          />
+        </div>
+      )}
+      {showGender && (
+        <div className="pt-4">
+          <label
+            htmlFor="gender"
+            className="block text-sm font-medium leading-6 text-gray-900 dark:text-audino-light-silver"
+          >
+            Gender
+          </label>
+          <CustomSelect
+            id="gender"
+            name="gender"
+            options={[
+              { label: "Male", value: "male" },
+              { label: "Female", value: "female" },
+            ]}
+            // formError={formError}
+            value={getInputValue("gender")}
+            onChange={(e) => handleValueChange("gender", e.target.value)}
           />
         </div>
       )}

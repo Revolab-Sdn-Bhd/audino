@@ -11,11 +11,11 @@ export const DATASET_MAPING = {
   is_voxpopuli: "Gender, Age, Language/Locale, Start, End, Transcription",
   is_tedlium: "Gender, Language/Locale, Start, End, Transcription",
   is_commonvoice:
-    "Gender, Age, Accent, Emotion, Language/Locale, Start, End, Transcription",
+    "Accent, Emotion, Language/Locale, Start, End, Transcription",
 };
 
 export const OPTIONS_TASK_TYPE = [
-  {name : 'Speech Recognition(ASR)', datasets: ['is_librivox', 'is_vctx', 'is_voxceleb', 'is_librispeech', 'is_voxpopuli', 'is_tedlium','is_commonvoice' ]},
+  {name : 'Speech Recognition(ASR)', datasets: ['is_librivox', 'is_vctx', 'is_voxceleb', 'is_librispeech', 'is_voxpopuli', 'is_tedlium', 'is_commonvoice' ]},
   {name : 'Language Identification',datasets: ['is_voxpopuli','is_commonvoice']},
   {name : 'Accent & dialect identification',datasets: ['is_commonvoice']},
   {name : 'Multilingual speech processing', datasets: ['is_commonvoice']},

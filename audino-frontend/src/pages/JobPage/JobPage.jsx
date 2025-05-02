@@ -47,6 +47,10 @@ export default function JobPage({
           value: '{"and":[{"==":[{"var":"assignee"},"<username>"]}]}',
         },
         {
+          label: "In Progress Tasks",
+          value: '{"!":{"or":[{"==":[{"var":"state"},"in progress"]}',
+        },
+        {
           label: "Not completed",
           value:
             '{"!":{"or":[{"==":[{"var":"state"},"completed"]},{"==":[{"var":"stage"},"acceptance"]}]}}',

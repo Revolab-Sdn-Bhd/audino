@@ -48,7 +48,7 @@ export default function JobPage({
         },
         {
           label: "In Progress Tasks",
-          value: '{"!":{"or":[{"==":[{"var":"state"},"in progress"]}',
+          value: '{"==":[{"var":"state"},"in progress"]}',
         },
         {
           label: "Not completed",

@@ -42,21 +42,29 @@ export default function JobPage({
       id: "quick_filter",
       name: "Quick Filter",
       options: [
-        {
-          label: "Assigned to me",
-          value: '{"and":[{"==":[{"var":"assignee"},"<username>"]}]}',
-        },
+        // {
+        //   label: "Assigned to me",
+        //   value: '{"and":[{"==":[{"var":"assignee"},"<username>"]}]}',
+        // },
         {
           label: "In Progress Tasks",
-          value: '{"!":{"or":[{"==":[{"var":"state"},"in progress"]}',
+          value: '{"==":[{"var":"state"},"in progress"]}',
         },
         {
-          label: "Not completed",
-          value:
-            '{"!":{"or":[{"==":[{"var":"state"},"completed"]},{"==":[{"var":"stage"},"acceptance"]}]}}',
-
-          // value: '{"!":{"and":[{"==":[{"var":"status"},"completed"]}]}}',
+          label: "New Tasks",
+          value: '{"==":[{"var":"state"},"new"]}',
         },
+        {
+          label: "Rejected Tasks",
+          value: '{"==":[{"var":"state"},"rejected"]}',
+        },
+        // {
+        //   label: "Not completed",
+        //   value:
+        //     '{"!":{"or":[{"==":[{"var":"state"},"completed"]},{"==":[{"var":"stage"},"acceptance"]}]}}',
+
+        //   // value: '{"!":{"and":[{"==":[{"var":"status"},"completed"]}]}}',
+        // },
       ],
     },
   ];

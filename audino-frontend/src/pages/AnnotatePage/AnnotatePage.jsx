@@ -1361,18 +1361,6 @@ export default function AnnotatePage({}) {
 
                 {regions[currentAnnotationIndex]?.data?.label ? (
                   <div className="xl:w-1/2 px-4 xl:px-0 w-full mx-auto">
-                    <EditableFields
-                      inputTextRef={inputTextRef}
-                      totalDuration={totalDuration}
-                      regions={regions}
-                      setRegions={setRegions}
-                      currentAnnotationIndex={currentAnnotationIndex}
-                      undoStackRef={undoStackRef}
-                      redoStackRef={redoStackRef}
-                      getLabelsQuery={getLabelsQuery}
-                      getJobDetailQuery={getJobDetailQuery}
-                    />
-
                     {/* Action buttons */}
                     <div className="flex-shrink-0 border-t dark:border-audino-neutral-gray border-gray-200 my-8 py-4">
                       <div className="flex justify-end space-x-3">
@@ -1387,6 +1375,17 @@ export default function AnnotatePage({}) {
                         </button>
                       </div>
                     </div>
+                    <EditableFields
+                      inputTextRef={inputTextRef}
+                      totalDuration={totalDuration}
+                      regions={regions}
+                      setRegions={setRegions}
+                      currentAnnotationIndex={currentAnnotationIndex}
+                      undoStackRef={undoStackRef}
+                      redoStackRef={redoStackRef}
+                      getLabelsQuery={getLabelsQuery}
+                      getJobDetailQuery={getJobDetailQuery}
+                    />
                   </div>
                 ) : (
                   <p className="mt-4 pb-4 px-4 sm:p-0 text-sm text-gray-400 text-center">

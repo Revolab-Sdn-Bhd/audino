@@ -173,11 +173,14 @@ export default function JobCard({
             </p>
           ) : null}
         </div>
+        <div className="flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+          <p>Project ID: #{job.project_id}</p>
+        </div>
 
         {/* <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
         <p>State: {job.state}</p>
       </div> */}
-        <div className="flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+        {/* <div className="flex items-center gap-x-2 text-xs leading-5 text-gray-500">
           <p>
             Audino AI annotation is
             <span
@@ -189,7 +192,7 @@ export default function JobCard({
               {aiStatusMapping[job.ai_audio_annotation_status]}
             </span>
           </p>
-        </div>
+        </div> */}
         <div className="flex items-center gap-x-2 text-xs leading-5 text-gray-500">
           <p>
             Created on {dayjs(job.created_date).format("Do MMMM YYYY")} & Last

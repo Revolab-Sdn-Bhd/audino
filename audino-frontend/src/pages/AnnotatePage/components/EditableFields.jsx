@@ -181,6 +181,7 @@ export default function EditableFields({
             refs={inputTextRef}
             name="transcription"
             id="transcription"
+            dir="auto"
             // formError={formError}
             value={getInputValue("transcription")}
             onChange={(e) => {
@@ -193,6 +194,7 @@ export default function EditableFields({
             ref={inputTextRef}
             name="transcription"
             id="transcription"
+            dir="auto"
             value={getInputValue("transcription")}
             onChange={(e) => handleValueChange("transcription", e.target.value)}
             className="block w-full rounded-md border-0 py-1.5 pr-10 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 !outline-none dark:bg-audino-light-navy dark:text-audino-cloud-gray ring-gray-300 dark:ring-audino-charcoal placeholder:text-gray-300 focus:ring-audino-primary text-gray-900"

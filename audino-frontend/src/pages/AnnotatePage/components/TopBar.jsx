@@ -7,7 +7,7 @@ import SecondaryButton from "../../../components/SecondaryButton/SecondaryButton
 import { Popover } from '@headlessui/react'
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
-
+import { useJobStore } from "../../../zustand-store/jobs";
 
 export default function TopBar({
   isScrolled,
@@ -20,7 +20,9 @@ export default function TopBar({
 }) {
   const navigate = useNavigate();
 
-  
+  const jobFromStore = useJobStore((state) =>
+    state.jobs_obj.results.find((j) => j.id.toString() === jobId.toString())
+  );
 
   return (
     <AppBar>
@@ -36,7 +38,8 @@ export default function TopBar({
           <div className={`items-center grid grid-cols-12 grid-rows-1 ${isScrolled ? "fixed w-full lg:px-16 px-4 sm:px-6 pt-6 pb-12 top-0 z-10 bg-audino-primary dark:bg-audino-gradient" : ""}`}>
             <h1 className="text-3xl font-bold tracking-tight text-white col-span-10">
               Annotate #{jobId}
-              {getJobDetailQuery.data?.task && ` - ${getJobDetailQuery.data?.task.name}`}
+              {getJobDetailQuery.data?.task && ` - ${getJobDetailQuery.data.task.name}`}
+              {(jobFromStore?.project_id ?? getJobDetailQuery.data?.project_id) && ` - ProjectID #${jobFromStore?.project_id ?? getJobDetailQuery.data?.project_id}`}
             </h1>
             <div className="col-span-2 justify-end gap-2 flex">
               <div className='block xl:hidden'>

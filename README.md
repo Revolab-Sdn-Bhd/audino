@@ -159,5 +159,23 @@ $ docker compose -f docker-compose.yml down
     $ npm run start
     ```
 
+### Redeployment
+1. cd to the path
+```
+cd /var/www/audino
+```
+2. Export CVAT_HOST
+```
+sudo -E docker compose up -d --build
+```
+3. Docker compose down
+```
+docker compose -f docker-compose.yml down
+```
+4. Docker compose up
+```
+sudo -E docker compose up -d --build
+```
+
 ## License
 [MIT](https://github.com/midas-research/audino/blob/master/LICENSE) © MIDAS, IIIT Delhi

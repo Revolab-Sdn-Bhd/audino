@@ -166,11 +166,11 @@ cd /var/www/audino
 ```
 2. Export CVAT_HOST
 ```
-export CVAT_HOST="https://labelling.revolab.ai"
+export CVAT_HOST=labelling.revolab.ai
 ```
 3. Docker compose down
 ```
-docker compose -f docker-compose.yml down
+sudo docker compose -f docker-compose.yml down
 ```
 4. Docker compose up
 ```
